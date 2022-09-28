@@ -19,6 +19,7 @@
 #include<stdio.h> // pour utiliser les fonctions d'E/S
 #include<windows.h> // pour utiliser la fonction system avec 'clr' pour effacer l'écran
 #include<stdlib.h> // pour utiliser la fonctionmalloc function
+#include<time.h>
 #include<ctype.h> // pour la conversation des characters de LowerCase à UpperCase et vice versa.
 #include<string.h> // pour utiliser la fonction strcomp() et strncpy()
 
@@ -36,6 +37,7 @@ typedef struct contact
     // char instgram[1000];
     struct contact *next;
 }contact; 
+
 typedef struct tracker
 {
     int index;
@@ -54,6 +56,7 @@ void Edite(contact *cont);
 void Delete(contact **head, contact *cont);
 void Call(void);
 void SendMsg(void);
+void clearScreen(void);
 
 /* le program principale */
 int main(void)
@@ -82,24 +85,25 @@ int main(void)
               {
                   case 1:    
                             Add(&head);
-                            system("cls");
+                            clearScreen();
                       
                       break;
      
                   case 2:
                             Search(head, &teteSr);
-                            // system("cls");
+                            clearScreen();
                      break;
 
                   case 3:
                             list(head, &teteLs);
-                            // system("cls");
+                            clearScreen();
 
                      break;
 
                   default:
-                            printf("\n\n\n");
+                            printf("\n\n");
                             printf("\tExiting .........!\n");
+                            clearScreen();
                       break;
               }
               
@@ -534,4 +538,9 @@ void SendMsg(void)
     if(choice != 1)
           return;
     puts("\tYour message was sent successfully!");
+}
+
+void clearScreen(void){
+    sleep(1.9);
+    system("cls");
 }
